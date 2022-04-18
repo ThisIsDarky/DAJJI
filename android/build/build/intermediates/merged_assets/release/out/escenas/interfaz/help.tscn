@@ -1,0 +1,323 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://help.gd" type="Script" id=1]
+[ext_resource path="res://fonts/Brightly Crush Shine.otf" type="DynamicFontData" id=2]
+[ext_resource path="res://escenas/prefabs/enemi.tscn" type="PackedScene" id=3]
+[ext_resource path="res://escenas/prefabs/supernova.tscn" type="PackedScene" id=4]
+[ext_resource path="res://escenas/prefabs/Batery.tscn" type="PackedScene" id=5]
+[ext_resource path="res://sprites/powerUp.png" type="Texture" id=6]
+[ext_resource path="res://sprites/botones2.png" type="Texture" id=7]
+[ext_resource path="res://sprites/exit.png" type="Texture" id=8]
+[ext_resource path="res://sprites/estrellas.png" type="Texture" id=9]
+[ext_resource path="res://sprites/marco.png" type="Texture" id=10]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0 )
+colors = PoolColorArray( 0, 0, 0, 1 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "btnhover"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("info/infoEscudo:rect_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 68, 63 ), Vector2( 70, 65 ), Vector2( 68, 63 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("info/infoPlaneta:rect_size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 68, 63 ), Vector2( 70, 65 ), Vector2( 68, 63 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("info/infoSuperNova:rect_size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 68, 63 ), Vector2( 70, 65 ), Vector2( 68, 63 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("info/infoBatery:rect_size")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 68, 63 ), Vector2( 70, 65 ), Vector2( 68, 63 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("info/btnVolver:rect_size")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 122, 124 ), Vector2( 125, 127 ), Vector2( 122, 124 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("escudo:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 360.0 ]
+}
+
+[sub_resource type="DynamicFont" id=5]
+size = 30
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 24
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 18
+font_data = ExtResource( 2 )
+
+[node name="help" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="background" type="Sprite" parent="."]
+modulate = Color( 0.498039, 0.486275, 0.486275, 1 )
+position = Vector2( 238.655, 379.309 )
+texture = ExtResource( 9 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 100.377, 101.88 )
+scale = Vector2( 0.0666286, 129.076 )
+texture = SubResource( 2 )
+
+[node name="Sprite2" type="Sprite" parent="."]
+position = Vector2( 100.377, 256.896 )
+scale = Vector2( 0.067, 129.076 )
+texture = SubResource( 2 )
+
+[node name="Sprite3" type="Sprite" parent="."]
+position = Vector2( 100.377, 410.13 )
+scale = Vector2( 0.067, 129.076 )
+texture = SubResource( 2 )
+
+[node name="Sprite4" type="Sprite" parent="."]
+position = Vector2( 100.377, 562.553 )
+scale = Vector2( 0.067, 129.076 )
+texture = SubResource( 2 )
+
+[node name="enemi" parent="." instance=ExtResource( 3 )]
+position = Vector2( 99.9833, 99.6303 )
+
+[node name="supernova" parent="." instance=ExtResource( 4 )]
+position = Vector2( 101.448, 258.959 )
+
+[node name="Batery" parent="." instance=ExtResource( 5 )]
+position = Vector2( 99.5167, 406.711 )
+
+[node name="escudo" type="Sprite" parent="."]
+position = Vector2( 96.3943, 562.475 )
+scale = Vector2( 0.2275, 0.2275 )
+texture = ExtResource( 6 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/btnhover = SubResource( 3 )
+anims/girar = SubResource( 4 )
+
+[node name="textos" type="Node" parent="."]
+
+[node name="Label" type="Label" parent="textos"]
+margin_left = 203.0
+margin_top = 82.545
+margin_right = 313.0
+margin_bottom = 127.545
+custom_fonts/font = SubResource( 5 )
+text = "Planeta"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="textos"]
+margin_left = 203.0
+margin_top = 234.935
+margin_right = 361.0
+margin_bottom = 279.935
+custom_fonts/font = SubResource( 5 )
+text = "Super Nova"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label3" type="Label" parent="textos"]
+margin_left = 203.0
+margin_top = 388.913
+margin_right = 313.0
+margin_bottom = 433.913
+custom_fonts/font = SubResource( 5 )
+text = "Bateria"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label4" type="Label" parent="textos"]
+margin_left = 203.0
+margin_top = 546.066
+margin_right = 313.0
+margin_bottom = 591.066
+custom_fonts/font = SubResource( 5 )
+text = "Escudo"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="info" type="CanvasLayer" parent="."]
+
+[node name="infoPlaneta" type="Button" parent="info"]
+anchor_right = 0.195
+anchor_bottom = 0.064
+margin_left = 378.871
+margin_top = 73.4902
+margin_right = 354.636
+margin_bottom = 87.2742
+focus_mode = 0
+enabled_focus_mode = 0
+icon = ExtResource( 7 )
+flat = true
+expand_icon = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="infoSuperNova" type="Button" parent="info"]
+anchor_right = 0.195
+anchor_bottom = 0.064
+margin_left = 378.871
+margin_top = 221.418
+margin_right = 354.636
+margin_bottom = 235.202
+focus_mode = 0
+enabled_focus_mode = 0
+icon = ExtResource( 7 )
+flat = true
+expand_icon = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="infoBatery" type="Button" parent="info"]
+anchor_right = 0.195
+anchor_bottom = 0.064
+margin_left = 378.871
+margin_top = 380.505
+margin_right = 354.636
+margin_bottom = 394.289
+rect_pivot_offset = Vector2( 34, 32 )
+focus_mode = 0
+enabled_focus_mode = 0
+icon = ExtResource( 7 )
+flat = true
+expand_icon = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="infoEscudo" type="Button" parent="info"]
+anchor_right = 0.195
+anchor_bottom = 0.064
+margin_left = 378.871
+margin_top = 537.003
+margin_right = 354.636
+margin_bottom = 550.787
+rect_pivot_offset = Vector2( 34, 32 )
+focus_mode = 0
+enabled_focus_mode = 0
+icon = ExtResource( 7 )
+flat = true
+expand_icon = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="btnVolver" type="Button" parent="info"]
+margin_left = 187.416
+margin_top = 645.833
+margin_right = 309.416
+margin_bottom = 769.833
+focus_mode = 0
+custom_fonts/font = SubResource( 6 )
+enabled_focus_mode = 0
+icon = ExtResource( 8 )
+flat = true
+expand_icon = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="showHelp" type="PopupDialog" parent="info"]
+margin_left = 60.3636
+margin_top = 272.635
+margin_right = 428.364
+margin_bottom = 519.635
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="marco" type="Sprite" parent="info/showHelp"]
+modulate = Color( 0.207843, 0.560784, 0.576471, 1 )
+position = Vector2( 182.583, 120.387 )
+scale = Vector2( 0.521153, 0.551708 )
+texture = ExtResource( 10 )
+
+[node name="Label" type="Label" parent="info/showHelp"]
+margin_left = 8.0
+margin_top = 6.0
+margin_right = 354.0
+margin_bottom = 233.0
+custom_fonts/font = SubResource( 7 )
+text = "esta es una prueba
+"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="info/infoPlaneta" to="." method="_on_infoPlaneta_pressed"]
+[connection signal="pressed" from="info/infoSuperNova" to="." method="_on_infoSuperNova_pressed"]
+[connection signal="pressed" from="info/infoBatery" to="." method="_on_infoBatery_pressed"]
+[connection signal="pressed" from="info/infoEscudo" to="." method="_on_infoEscudo_pressed"]
+[connection signal="pressed" from="info/btnVolver" to="." method="_on_btnVolver_pressed"]

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/planeta.ogg-46e3dcf60af91422f2b9fc6c7a82d7df.oggstr"
+
+[deps]
+
+source_file="res://musica/sound/planeta.ogg"
+dest_files=[ "res://.import/planeta.ogg-46e3dcf60af91422f2b9fc6c7a82d7df.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

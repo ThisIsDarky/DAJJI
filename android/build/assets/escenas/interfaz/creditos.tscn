@@ -1,0 +1,192 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://fonts/Brightly Crush Shine.otf" type="DynamicFontData" id=1]
+[ext_resource path="res://sprites/botones1.png" type="Texture" id=2]
+[ext_resource path="res://sprites/botones3.png" type="Texture" id=3]
+[ext_resource path="res://escenas/interfaz/creditos.gd" type="Script" id=4]
+[ext_resource path="res://escenas/interfaz/objet.gd" type="Script" id=5]
+[ext_resource path="res://icon.png" type="Texture" id=6]
+[ext_resource path="res://sprites/fondo.png" type="Texture" id=7]
+[ext_resource path="res://sprites/estrellas2.png" type="Texture" id=8]
+[ext_resource path="res://sprites/estrellas.png" type="Texture" id=9]
+
+[sub_resource type="DynamicFont" id=1]
+size = 50
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 50
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 50
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 70
+font_data = ExtResource( 1 )
+
+[sub_resource type="Animation" id=5]
+resource_name = "animarBtn"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("btnMenu:rect_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 164, 164 ), Vector2( 170, 170 ), Vector2( 164, 164 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("btnVolver:rect_size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 164, 164 ), Vector2( 170, 170 ), Vector2( 164, 164 ) ]
+}
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 27.4816, 24.918 )
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource( 4 )
+
+[node name="lblBonus" type="Label" parent="."]
+margin_left = 33.0
+margin_top = 300.0
+margin_right = 247.0
+margin_bottom = 375.0
+custom_fonts/font = SubResource( 1 )
+text = "Bonus: 0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="lblScore" type="Label" parent="."]
+margin_left = 33.0
+margin_top = 159.354
+margin_right = 230.0
+margin_bottom = 234.354
+custom_fonts/font = SubResource( 2 )
+text = "Score: 0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="lblTotal" type="Label" parent="."]
+margin_left = 33.0
+margin_top = 450.0
+margin_right = 235.0
+margin_bottom = 525.0
+custom_fonts/font = SubResource( 3 )
+text = "Total: 0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="lblNameGame" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -82.5
+margin_right = 82.5
+margin_bottom = 104.0
+custom_fonts/font = SubResource( 4 )
+text = "DAJJI"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="btnMenu" type="Button" parent="."]
+margin_left = 52.632
+margin_top = 558.0
+margin_right = 216.632
+margin_bottom = 722.0
+rect_clip_content = true
+focus_mode = 0
+enabled_focus_mode = 0
+icon = ExtResource( 2 )
+flat = true
+align = 0
+expand_icon = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="btnVolver" type="Button" parent="."]
+margin_left = 254.919
+margin_top = 558.0
+margin_right = 418.919
+margin_bottom = 722.0
+focus_mode = 0
+enabled_focus_mode = 0
+icon = ExtResource( 3 )
+flat = true
+expand_icon = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="animarButton" type="AnimationPlayer" parent="."]
+anims/animarBtn = SubResource( 5 )
+
+[node name="objet" type="KinematicBody2D" parent="."]
+position = Vector2( 237.313, 383.526 )
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="objet"]
+visible = false
+texture = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="objet"]
+shape = SubResource( 6 )
+
+[node name="Camera2D" type="Camera2D" parent="objet"]
+current = true
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="objet/Camera2D"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="objet/Camera2D/ParallaxBackground"]
+motion_mirroring = Vector2( 0, 1168.5 )
+
+[node name="Sprite" type="Sprite" parent="objet/Camera2D/ParallaxBackground/ParallaxLayer"]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 235.201, 381.407 )
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 7 )
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="objet/Camera2D/ParallaxBackground"]
+motion_scale = Vector2( 1, 0.1 )
+motion_mirroring = Vector2( 0, 1168.5 )
+
+[node name="Sprite" type="Sprite" parent="objet/Camera2D/ParallaxBackground/ParallaxLayer2"]
+modulate = Color( 0.321569, 0.321569, 0.321569, 1 )
+position = Vector2( 235.201, 381.407 )
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 9 )
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="objet/Camera2D/ParallaxBackground"]
+motion_scale = Vector2( 1, 0.3 )
+motion_mirroring = Vector2( 0, 1168.5 )
+
+[node name="Sprite" type="Sprite" parent="objet/Camera2D/ParallaxBackground/ParallaxLayer3"]
+modulate = Color( 0.666667, 0.666667, 0.666667, 1 )
+position = Vector2( 235.201, 381.407 )
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 8 )
+
+[connection signal="pressed" from="btnMenu" to="." method="_on_btnMenu_pressed"]
+[connection signal="pressed" from="btnVolver" to="." method="_on_btnVolver_pressed"]

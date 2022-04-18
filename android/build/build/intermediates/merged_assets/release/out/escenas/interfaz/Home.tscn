@@ -1,0 +1,146 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://fonts/Brightly Crush Shine.otf" type="DynamicFontData" id=1]
+[ext_resource path="res://sprites/botones3.png" type="Texture" id=2]
+[ext_resource path="res://sprites/botones4.png" type="Texture" id=3]
+[ext_resource path="res://sprites/botones2.png" type="Texture" id=4]
+[ext_resource path="res://escenas/interfaz/Home.gd" type="Script" id=5]
+[ext_resource path="res://sprites/background.png" type="Texture" id=6]
+
+[sub_resource type="DynamicFont" id=1]
+size = 70
+font_data = ExtResource( 1 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "BtnAnimation"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Btnplay:rect_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 174, 174 ), Vector2( 180, 180 ), Vector2( 174, 174 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("BtnSettings:rect_size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 174, 174 ), Vector2( 180, 180 ), Vector2( 174, 174 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("BtnHelp:rect_size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 174, 174 ), Vector2( 180, 180 ), Vector2( 174, 174 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "offset"
+tracks/0/type = "value"
+tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[node name="Home" type="CanvasLayer"]
+script = ExtResource( 5 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_left = -2.78915
+margin_top = -27.3517
+margin_right = 480.211
+margin_bottom = 801.648
+rect_scale = Vector2( 1.1, 1.1 )
+texture = ExtResource( 6 )
+expand = true
+stretch_mode = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="lblNameGame" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -82.5
+margin_right = 82.5
+margin_bottom = 104.0
+custom_fonts/font = SubResource( 1 )
+text = "DAJJI"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Btnplay" type="Button" parent="."]
+margin_left = 154.0
+margin_top = 189.0
+margin_right = 328.0
+margin_bottom = 363.0
+focus_mode = 0
+enabled_focus_mode = 0
+icon = ExtResource( 2 )
+flat = true
+expand_icon = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BtnSettings" type="Button" parent="."]
+margin_left = 154.0
+margin_top = 372.937
+margin_right = 328.0
+margin_bottom = 546.937
+focus_mode = 0
+enabled_focus_mode = 0
+icon = ExtResource( 3 )
+flat = true
+expand_icon = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BtnHelp" type="Button" parent="."]
+margin_left = 154.0
+margin_top = 564.722
+margin_right = 328.0
+margin_bottom = 738.722
+focus_mode = 0
+enabled_focus_mode = 0
+icon = ExtResource( 4 )
+flat = true
+expand_icon = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="animar" type="AnimationPlayer" parent="."]
+anims/BtnAnimation = SubResource( 2 )
+anims/offset = SubResource( 3 )
+
+[connection signal="pressed" from="Btnplay" to="." method="_on_Btnplay_pressed"]
+[connection signal="pressed" from="BtnSettings" to="." method="_on_BtnSettings_pressed"]
+[connection signal="pressed" from="BtnHelp" to="." method="_on_BtnHelp_pressed"]

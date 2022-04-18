@@ -1,0 +1,209 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://escenas/prefabs/player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://escenas/prefabs/enemi.tscn" type="PackedScene" id=2]
+[ext_resource path="res://escenas/mundo.gd" type="Script" id=3]
+[ext_resource path="res://escenas/prefabs/Line2D.tscn" type="PackedScene" id=4]
+[ext_resource path="res://fonts/Brightly Crush Shine.otf" type="DynamicFontData" id=5]
+[ext_resource path="res://escenas/prefabs/Batery.tscn" type="PackedScene" id=6]
+[ext_resource path="res://escenas/prefabs/supernova.tscn" type="PackedScene" id=7]
+[ext_resource path="res://escenas/globals/AudioStreamPlayer.gd" type="Script" id=8]
+[ext_resource path="res://sprites/letras/Sin título-1.png" type="Texture" id=9]
+[ext_resource path="res://sprites/letras/W.png" type="Texture" id=10]
+
+[sub_resource type="Gradient" id=1]
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[sub_resource type="Environment" id=3]
+background_mode = 4
+glow_intensity = 8.0
+glow_strength = 2.0
+glow_hdr_threshold = 1.5
+glow_bicubic_upscale = true
+adjustment_enabled = true
+adjustment_saturation = 2.07
+adjustment_color_correction = SubResource( 2 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 60
+outline_size = 3
+outline_color = Color( 0.219608, 0.0627451, 0.564706, 1 )
+extra_spacing_char = 8
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 60
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=6]
+font_data = ExtResource( 5 )
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0, 0.352941, 0.635294, 1 )
+
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="Animation" id=9]
+resource_name = "animarWOW!"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("interfaz/text/W:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.5, 0.5 ), Vector2( 0.6, 0.6 ), Vector2( 0.5, 0.5 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("interfaz/text/O:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.5, 1, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.5, 0.5 ), Vector2( 0.6, 0.6 ), Vector2( 0.5, 0.5 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("interfaz/text/W2:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 1, 1.5, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.5, 0.5 ), Vector2( 0.6, 0.6 ), Vector2( 0.5, 0.5 ) ]
+}
+
+[node name="mundo" type="Node2D"]
+script = ExtResource( 3 )
+enemy = ExtResource( 2 )
+supernova = ExtResource( 7 )
+batery = ExtResource( 6 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 3 )
+
+[node name="player" parent="." instance=ExtResource( 1 )]
+modulate = Color( 1.5, 1.5, 1.5, 1 )
+position = Vector2( 237.096, 645.967 )
+
+[node name="Line2D" parent="player" instance=ExtResource( 4 )]
+position = Vector2( -1497.61, -4291.48 )
+scale = Vector2( 6.66667, 6.66667 )
+default_color = Color( 0.0117647, 0.203922, 0.0745098, 1 )
+
+[node name="interfaz" type="CanvasLayer" parent="."]
+
+[node name="GameOver" type="Label" parent="interfaz"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -184.5
+margin_top = -44.5
+margin_right = 184.5
+margin_bottom = 44.5
+custom_fonts/font = SubResource( 4 )
+text = "GAME OVER"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LblScore" type="Label" parent="interfaz"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -32.0
+margin_right = 32.0
+margin_bottom = 181.0
+custom_fonts/font = SubResource( 5 )
+text = "10
+"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LblNumPowerUP" type="Label" parent="interfaz"]
+margin_left = 146.835
+margin_top = 33.3354
+margin_right = 186.835
+margin_bottom = 57.3354
+custom_fonts/font = SubResource( 6 )
+text = "0"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="pbrPowerUP" type="ProgressBar" parent="interfaz"]
+margin_left = 20.6996
+margin_top = 31.1965
+margin_right = 141.7
+margin_bottom = 58.1965
+custom_styles/fg = SubResource( 7 )
+custom_styles/bg = SubResource( 8 )
+max_value = 30.0
+value = 30.0
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="text" type="CanvasLayer" parent="interfaz"]
+
+[node name="W" type="Sprite" parent="interfaz/text"]
+visible = false
+position = Vector2( 136.017, 396.633 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 10 )
+
+[node name="O" type="Sprite" parent="interfaz/text"]
+visible = false
+position = Vector2( 242.185, 396.633 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 9 )
+
+[node name="W2" type="Sprite" parent="interfaz/text"]
+visible = false
+position = Vector2( 349.085, 396.633 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 10 )
+
+[node name="musicaFonso" type="AudioStreamPlayer" parent="."]
+script = ExtResource( 8 )
+
+[node name="Score" type="Timer" parent="."]
+
+[node name="StartGame" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[node name="controlSlow" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="animartext" type="AnimationPlayer" parent="."]
+anims/animarWOW! = SubResource( 9 )
+
+[connection signal="golpeBatery" from="player" to="." method="_on_player_golpeBatery"]
+[connection signal="golpePlaneta" from="player" to="." method="_on_player_golpePlaneta"]
+[connection signal="golpeSupernova" from="player" to="." method="_on_player_golpeSupernova"]
+[connection signal="timeout" from="Score" to="." method="_on_Score_timeout"]
+[connection signal="timeout" from="StartGame" to="." method="_on_StartGame_timeout"]
+[connection signal="timeout" from="controlSlow" to="." method="_on_controlSlow_timeout"]

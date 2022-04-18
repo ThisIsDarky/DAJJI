@@ -1,0 +1,114 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://escenas/interfaz/settings.gd" type="Script" id=1]
+[ext_resource path="res://fonts/Brightly Crush Shine.otf" type="DynamicFontData" id=2]
+[ext_resource path="res://sprites/estrellas.png" type="Texture" id=3]
+[ext_resource path="res://sprites/fondo.png" type="Texture" id=4]
+[ext_resource path="res://sprites/moon.png" type="Texture" id=5]
+[ext_resource path="res://sprites/exit.png" type="Texture" id=6]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 2 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "moon"
+length = 20.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("fondoadorn/moon:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 20 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 360.0 ]
+}
+
+[node name="settings" type="CanvasLayer"]
+script = ExtResource( 1 )
+
+[node name="fondoadorn" type="Node" parent="."]
+
+[node name="fondo" type="Sprite" parent="fondoadorn"]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 235.234, 385.065 )
+texture = ExtResource( 4 )
+
+[node name="estrellas" type="Sprite" parent="fondoadorn"]
+modulate = Color( 1, 1, 1, 0.733333 )
+position = Vector2( 236.379, 381.714 )
+texture = ExtResource( 3 )
+
+[node name="moon" type="Sprite" parent="fondoadorn"]
+position = Vector2( 243.003, 517.667 )
+texture = ExtResource( 5 )
+offset = Vector2( -15, 20 )
+
+[node name="volSoundtrack" type="HSlider" parent="."]
+margin_left = 193.252
+margin_top = 150.0
+margin_right = 383.252
+margin_bottom = 194.0
+max_value = 30.0
+tick_count = 30
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="textsoudtrck" type="Label" parent="."]
+anchor_right = 0.085
+anchor_bottom = 0.031
+margin_left = 40.6586
+margin_top = 159.0
+margin_right = 133.454
+margin_bottom = 159.161
+custom_fonts/font = SubResource( 1 )
+text = "MUSICA DE FONDO"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="volEfect" type="HSlider" parent="."]
+margin_left = 193.252
+margin_top = 251.022
+margin_right = 383.252
+margin_bottom = 295.022
+max_value = 10.0
+tick_count = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="textEfect" type="Label" parent="."]
+anchor_right = 0.085
+anchor_bottom = 0.031
+margin_left = 40.6586
+margin_top = 260.022
+margin_right = 133.454
+margin_bottom = 260.183
+custom_fonts/font = SubResource( 1 )
+text = "EFECTO DE SONIDO"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="."]
+margin_left = 152.635
+margin_top = 540.225
+margin_right = 498.635
+margin_bottom = 855.225
+rect_scale = Vector2( 0.5, 0.5 )
+text = "x"
+icon = ExtResource( 6 )
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="animar" type="AnimationPlayer" parent="."]
+anims/moon = SubResource( 2 )
+
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

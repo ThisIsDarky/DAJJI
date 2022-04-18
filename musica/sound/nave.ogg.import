@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/nave.ogg-c04cec5d45329c20e8e805be751c67c1.oggstr"
+
+[deps]
+
+source_file="res://musica/sound/nave.ogg"
+dest_files=[ "res://.import/nave.ogg-c04cec5d45329c20e8e805be751c67c1.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

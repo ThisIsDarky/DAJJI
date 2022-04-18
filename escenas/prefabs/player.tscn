@@ -1,0 +1,134 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://sprites/player.png" type="Texture" id=1]
+[ext_resource path="res://escenas/prefabs/player.gd" type="Script" id=2]
+[ext_resource path="res://sprites/powerUp.png" type="Texture" id=3]
+[ext_resource path="res://musica/sound/escudo.ogg" type="AudioStream" id=4]
+[ext_resource path="res://sprites/fondo.png" type="Texture" id=5]
+[ext_resource path="res://sprites/estrellas.png" type="Texture" id=6]
+[ext_resource path="res://sprites/estrellas2.png" type="Texture" id=7]
+
+[sub_resource type="Animation" id=1]
+resource_name = "girarEscudo"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("powerUp:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 360.0 ]
+}
+
+[node name="player" type="KinematicBody2D"]
+position = Vector2( 224.642, 643.722 )
+scale = Vector2( 0.15, 0.15 )
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+
+[node name="powerUp" type="Sprite" parent="."]
+position = Vector2( 5, 20 )
+scale = Vector2( 1.2, 1.2 )
+texture = ExtResource( 3 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
+polygon = PoolVector2Array( 6.81189, -180.407, -169.587, 130.529, 181.229, 132.015 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 0.0323486, 0 )
+offset = Vector2( 0, -150 )
+current = true
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+drag_margin_left = 1.0
+drag_margin_top = 0.0
+drag_margin_right = 1.0
+drag_margin_bottom = 0.0
+editor_draw_drag_margin = true
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="Camera2D"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Camera2D/ParallaxBackground"]
+motion_mirroring = Vector2( 0, 1168.5 )
+
+[node name="fondo" type="Sprite" parent="Camera2D/ParallaxBackground/ParallaxLayer"]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 229.776, 376.05 )
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 5 )
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="Camera2D/ParallaxBackground"]
+motion_scale = Vector2( 1, 0.1 )
+motion_mirroring = Vector2( 0, 1168.5 )
+
+[node name="estrellas" type="Sprite" parent="Camera2D/ParallaxBackground/ParallaxLayer2"]
+modulate = Color( 0.321569, 0.321569, 0.321569, 1 )
+position = Vector2( 229.776, 376.05 )
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 6 )
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="Camera2D/ParallaxBackground"]
+motion_scale = Vector2( 1, 0.3 )
+motion_mirroring = Vector2( 0, 1168.5 )
+
+[node name="Sprite" type="Sprite" parent="Camera2D/ParallaxBackground/ParallaxLayer3"]
+modulate = Color( 0.666667, 0.666667, 0.666667, 1 )
+position = Vector2( 229.776, 376.05 )
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 7 )
+
+[node name="Player2" type="Area2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Player2"]
+polygon = PoolVector2Array( 6.72046, -142.831, -144.732, 115.53, 156.688, 117.015 )
+
+[node name="GameOverParticles" type="CPUParticles2D" parent="."]
+rotation = -1.08036
+scale = Vector2( 0.5, 0.5 )
+emitting = false
+amount = 1
+lifetime = 4.0
+one_shot = true
+speed_scale = 2.0
+texture = ExtResource( 1 )
+gravity = Vector2( 0, 200 )
+
+[node name="GameOverParticles2" type="CPUParticles2D" parent="."]
+rotation = -3.10843
+scale = Vector2( 0.5, 0.5 )
+emitting = false
+amount = 1
+lifetime = 4.0
+one_shot = true
+speed_scale = 2.0
+texture = ExtResource( 1 )
+gravity = Vector2( 0, 200 )
+
+[node name="GameOverParticles3" type="CPUParticles2D" parent="."]
+rotation = 0.945968
+scale = Vector2( 0.5, 0.5 )
+emitting = false
+amount = 1
+lifetime = 4.0
+one_shot = true
+speed_scale = 2.0
+texture = ExtResource( 1 )
+gravity = Vector2( 0, 200 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/girarEscudo = SubResource( 1 )
+
+[node name="efecto" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+volume_db = -44.711
+
+[connection signal="area_entered" from="Player2" to="." method="_on_Player2_area_entered"]
